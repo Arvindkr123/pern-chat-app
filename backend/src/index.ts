@@ -1,11 +1,18 @@
-import express from "express";
+import express, { urlencoded } from "express";
+import authRoutes from "./routes/auth.routes.js";
+import messageRoutes from "./routes/message.routes.js";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
+dotenv.config();
 
 const app = express();
+app.use(express.json()); // for parse the application/json data
+app.use(cookieParser()); // for parse cookie
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+app.use("/api/auth", authRoutes);
+app.use("/api/message", messageRoutes);
 
-app.listen(8080, () => {
-  console.log("server listening on port 8080");
+app.listen(4000, () => {
+  console.log("server listening on port 4000");
 });
