@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
+app.use(urlencoded({ extended: true }));
 app.use(express.json()); // for parse the application/json data
 app.use(cookieParser()); // for parse cookie
 
